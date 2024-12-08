@@ -1,0 +1,22 @@
+{
+  "name": "stranger",
+  "version": "1.0.0",
+  "author": "prince-atharva <prince.khant@atharvasystem.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "22.12.0",
+    "yarn": "1.22.22"
+  },
+  "scripts": {
+    "frontend-preinstall": "cd ./frontend && yarn",
+    "backend-preinstall": "cd ./backend && yarn",
+    "frontend-build": "cd ./frontend && yarn build",
+    "watch-frontend": "cd ./frontend && yarn build --watch",
+    "watch-backend": "cd ./backend && yarn dev",
+    "dev": "concurrently \"yarn watch-frontend\" \"yarn watch-backend\"",
+    "start": "cd ./backend yarn start"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
