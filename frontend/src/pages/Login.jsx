@@ -14,19 +14,15 @@ function Login() {
             <span>Login with Google</span>
           </button>
           <button class="flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-            <FaTwitter className="mr-3"/>
+            <FaTwitter className="mr-3" />
             <span>Login with Twitter</span>
           </button>
 
           <button class="flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-            <FaFacebook className="mr-3"/>
+            <FaFacebook className="mr-3" />
             <span>Login with Facebook</span>
           </button>
         </div>
-        Create a new Account?
-        <Link className="link link-primary link-hover color-blue" to="/signup">
-          Signup
-        </Link>
       </div>
     </div>
   );
