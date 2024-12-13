@@ -1,7 +1,7 @@
 {
   "name": "solocircle_backend",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "dist/server.js",
   "license": "MIT",
   "type": "module",
   "engines": {
@@ -9,13 +9,21 @@
     "yarn": "1.22.22"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node dist/server.js",
+    "build": "npx tsc",
+    "dev": "nodemon"
   },
   "dependencies": {
+    "@prisma/client": "6.0.1",
     "express": "^4.21.2"
   },
   "devDependencies": {
-    "dotenv": "^16.4.7"
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "dotenv": "^16.4.7",
+    "nodemon": "^3.1.7",
+    "prisma": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   }
 }
