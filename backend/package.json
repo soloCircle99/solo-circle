@@ -15,9 +15,13 @@
   },
   "dependencies": {
     "@prisma/client": "6.0.1",
-    "express": "^4.21.2"
+    "axios": "^1.7.9",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
     "dotenv": "^16.4.7",
