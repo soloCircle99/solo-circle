@@ -9,9 +9,10 @@ app.use(express.json({ limit: "16kb" }))
 app.use(express.urlencoded({ extended: true, limit: "20kb" }))
 app.use(cookieParser())
 
-import userRouter from "./routes/user.routes.js"
+import googleRouters from "./routes/google.routes.js"
+import facebookRoutes from "./routes/facebook.routes.js"
 
-app.use("/api/auth", userRouter)
+app.use("/api/auth", googleRouters, facebookRoutes)
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

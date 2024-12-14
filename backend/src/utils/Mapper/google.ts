@@ -1,4 +1,5 @@
 interface UserDetailsInterface {
+  id: string | null;
   name: string | null;
   email: string | null;
   gender: string | null;
@@ -12,6 +13,7 @@ const mapUserDetails = (data: any): UserDetailsInterface | null => {
   if (!data) return null;
 
   return {
+    id: data?.names?.[0]?.metadata?.source?.id,
     name: data?.names?.[0]?.displayName || null,
     email: data?.emailAddresses?.[0]?.value || null,
     gender: data?.genders?.[0]?.value || null,
