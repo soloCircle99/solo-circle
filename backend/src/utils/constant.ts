@@ -16,7 +16,7 @@ const GOOGLE_SCOPES = [
   "https://www.googleapis.com/auth/userinfo.profile"
 ]
 
-const FACEBOOK_SCOPES = ["email", "public_profile"]
+const FACEBOOK_SCOPES = ["email", "public_profile", "user_age_range", "user_birthday", "user_gender"]
 
 const X_SCOPES = ["users.read", "tweet.read", "offline.access"]
 

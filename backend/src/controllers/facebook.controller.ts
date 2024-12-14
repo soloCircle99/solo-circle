@@ -57,7 +57,7 @@ const facebookCallback = async (req: Request, res: Response) => {
         const tokenResponse = await axios.get(FACEBOOK_TOKEN_BASEURL, { params: data });
         const { access_token, expires_in } = tokenResponse.data
 
-        const userDetails = await axios.get(`https://graph.facebook.com/me`, { params: { access_token, fields: "id,name,email,gender,birthday,picture,age_range" } })
+        const userDetails = await axios.get(`https://graph.facebook.com/me?fields=id,name,email,gender,birthday,picture`, { params: { access_token } })
 
         const user = mapUserDetails(userDetails?.data || null);
 

@@ -3,7 +3,7 @@ interface UserDetailsInterface {
     name: string | null;
     email: string | null;
     gender: string | null;
-    birthday: { year: number; month: number; day: number } | null;
+    birthday: Date | null;
     phoneNumber: string | null;
     photo: string | null;
     verified: boolean;
