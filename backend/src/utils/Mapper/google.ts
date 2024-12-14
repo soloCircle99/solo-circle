@@ -5,8 +5,8 @@ interface UserDetailsInterface {
   gender: string | null;
   birthday: { year: number; month: number; day: number } | null;
   phoneNumber: string | null;
-  age: string | null;
   photo: string | null;
+  verified: boolean;
 }
 
 const mapUserDetails = (data: any): UserDetailsInterface | null => {
@@ -19,8 +19,8 @@ const mapUserDetails = (data: any): UserDetailsInterface | null => {
     gender: data?.genders?.[0]?.value || null,
     birthday: data?.birthdays?.[0]?.date || null,
     phoneNumber: data?.phoneNumbers?.[0]?.value || null,
-    age: data?.ageRanges?.[0]?.ageRange || null,
     photo: data?.photos?.[0]?.url || null,
+    verified: true
   };
 };
 

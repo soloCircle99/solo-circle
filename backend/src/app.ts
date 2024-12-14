@@ -11,8 +11,9 @@ app.use(cookieParser())
 
 import googleRouters from "./routes/google.routes.js"
 import facebookRoutes from "./routes/facebook.routes.js"
+import xRoutes from "./routes/x.routes.js"
 
-app.use("/api/auth", googleRouters, facebookRoutes)
+app.use("/api/auth", googleRouters, facebookRoutes, xRoutes)
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

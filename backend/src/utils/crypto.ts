@@ -22,4 +22,12 @@ function decrypt(encryptedText: string = CRYPTO_ENCRYPTION_KEY) {
   return decrypted;
 }
 
-export { encrypt, decrypt }
+const generateCodeVerifier = () => {
+  return crypto.randomBytes(32).toString('hex')
+};
+
+const generateCodeChallenge = (verifier: string = CRYPTO_ENCRYPTION_KEY) => {
+  return crypto.createHash('sha256').update(verifier).digest('base64url');
+};
+
+export { encrypt, decrypt, generateCodeVerifier, generateCodeChallenge }

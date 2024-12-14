@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { prisma } from "../prisma-client.js"
-import { FACEBOOK_OAUTH_BASEURL, FACEBOOK_TOKEN_BASEURL } from "../utils/constant.js"
+import { FACEBOOK_OAUTH_BASEURL, FACEBOOK_SCOPES, FACEBOOK_TOKEN_BASEURL } from "../utils/constant.js"
 import querystring from "querystring"
 import { v4 as uuidv4 } from "uuid"
 import { ParsedQs } from 'qs';
@@ -14,10 +14,7 @@ const facebookLogin = async (req: Request, res: Response) => {
             'client_id': process.env.FACEBOOK_APP_ID,
             'redirect_uri': process.env.FACEBOOK_REDIRECT_URI,
             'response_type': 'code',
-            'scope': 'email,public_profile',
-            'access_type': 'offline',
-            'prompt': 'consent',
-            'include_granted_scopes': 'true',
+            'scope': FACEBOOK_SCOPES.join(' '),
             'state': uuidv4().toString(),
         };
 

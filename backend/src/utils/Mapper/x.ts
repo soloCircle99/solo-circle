@@ -15,12 +15,12 @@ const mapUserDetails = (data: any): UserDetailsInterface | null => {
     return {
         id: data?.id || null,
         name: data?.name || null,
-        email: data?.email || null,
-        gender: data?.gender || null,
-        birthday: data?.birthday || null,
+        email: data?.username || null,
+        gender: null,
+        birthday: null,
         phoneNumber: null,
-        photo: data?.picture?.data?.url || null,
-        verified: true
+        photo: data?.profile_image_url || null,
+        verified: data?.verified || false,
     };
 };
 
