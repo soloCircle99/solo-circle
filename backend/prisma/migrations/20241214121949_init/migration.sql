@@ -14,6 +14,9 @@ CREATE TABLE "User" (
     "verified" BOOLEAN NOT NULL,
     "provider" "Provider" NOT NULL,
     "providerId" TEXT NOT NULL,
+    "accessToken" TEXT NOT NULL,
+    "expires_in" TIMESTAMP(3) NOT NULL,
+    "refresh_token" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

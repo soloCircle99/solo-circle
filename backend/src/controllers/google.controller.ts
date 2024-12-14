@@ -68,9 +68,9 @@ const googleCallback = async (req: Request, res: Response) => {
       }
     })
 
-    const user = mapUserDetails(userDetails?.data || null);
+    const user = mapUserDetails(userDetails?.data);
 
-    //TODO: store user details in db
+    await prisma.user.create({ data: { ...user, provider: "GOOGLE", accessToken: access_token, expires_in: new Date(Date.now() + expires_in * 1000), refresh_token } })
 
     res.json(user)
   } catch (error) {

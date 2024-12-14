@@ -1,25 +1,23 @@
 interface UserDetailsInterface {
-    id: string | null;
-    name: string | null;
-    email: string | null;
+    providerId: string;
+    fullName: string
+    email: string
     gender: string | null;
     birthday: Date | null;
-    phoneNumber: string | null;
-    photo: string | null;
+    phoneNumber: string | null
+    avatar: string;
     verified: boolean;
 }
 
-const mapUserDetails = (data: any): UserDetailsInterface | null => {
-    if (!data) return null;
-
+const mapUserDetails = (data: any): UserDetailsInterface => {
     return {
-        id: data?.id || null,
-        name: data?.name || null,
+        providerId: data?.id,
+        fullName: data?.name,
         email: data?.username || null,
         gender: null,
         birthday: null,
         phoneNumber: null,
-        photo: data?.profile_image_url || null,
+        avatar: data?.profile_image_url,
         verified: data?.verified || false,
     };
 };

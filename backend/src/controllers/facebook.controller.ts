@@ -59,9 +59,9 @@ const facebookCallback = async (req: Request, res: Response) => {
 
         const userDetails = await axios.get(`https://graph.facebook.com/me?fields=id,name,email,gender,birthday,picture`, { params: { access_token } })
 
-        const user = mapUserDetails(userDetails?.data || null);
+        const user = mapUserDetails(userDetails?.data);
 
-        //TODO: store user details in db
+        await prisma.user.create({ data: { ...user, provider: "FACEBOOK", accessToken: access_token, expires_in: new Date(Date.now() + expires_in * 1000) } })
 
         res.json(user)
     } catch (error) {
