@@ -13,12 +13,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Provider {
+  GOOGLE
+  FACEBOOK
+  X
+}
+
 model User {
   id                String   @id @default(uuid())
-  name              String?
-  email             String?  @unique
-  avatar            String?
-  provider          String
+  nickName          String?
+  fullName          String
+  email             String
+  avatar            String
+  gender            String?
+  birthday          DateTime?
+  phoneNumber       String?
+  verified          Boolean
+  provider          Provider
   providerId        String   @unique
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
