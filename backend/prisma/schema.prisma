@@ -19,6 +19,12 @@ enum Provider {
   X
 }
 
+enum Role {
+  USER
+  ADMIN
+  SUPERUSER
+}
+
 model User {
   id                String   @id @default(uuid())
   nickName          String?
@@ -29,6 +35,7 @@ model User {
   birthday          DateTime?
   phoneNumber       String?
   verified          Boolean
+  role              Role     @default(USER)
   provider          Provider
   providerId        String   @unique
   accessToken       String
