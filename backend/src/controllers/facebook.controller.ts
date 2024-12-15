@@ -7,6 +7,7 @@ import { ParsedQs } from 'qs';
 import axios from "axios"
 import { decrypt, encrypt } from "../utils/crypto.js"
 import { mapUserDetails } from "../utils/Mapper/facebook.js"
+import { generateAccessToken } from "../utils/generateAccessToken.js"
 
 const facebookLogin = async (req: Request, res: Response) => {
     try {
@@ -61,9 +62,33 @@ const facebookCallback = async (req: Request, res: Response) => {
 
         const user = mapUserDetails(userDetails?.data);
 
-        await prisma.user.create({ data: { ...user, provider: "FACEBOOK", accessToken: access_token, expires_in: new Date(Date.now() + expires_in * 1000) } })
+        const user_details = await prisma.user.upsert({
+            where: { providerId: user.providerId },
+            create: {
+                ...user,
+                provider: "FACEBOOK",
+                accessToken: access_token,
+                expires_in: new Date(Date.now() + expires_in * 1000),
+            },
+            update: {
+                ...(user.fullName && { fullName: user.fullName }),
+                ...(user.email && { email: user.email }),
+                ...(user.gender !== null && { gender: user.gender }),
+                ...(user.birthday && { birthday: user.birthday }),
+                ...(user.phoneNumber && { phoneNumber: user.phoneNumber }),
+                ...(user.avatar && { avatar: user.avatar }),
+                verified: user.verified,
+                accessToken: access_token,
+                expires_in: new Date(Date.now() + expires_in * 1000),
+            },
+        });
 
-        res.json(user)
+        const userAccessToken = generateAccessToken(user_details)
+
+        const option = { httpOnly: true, secure: process.env.NODE_ENV === "develpoment", expires: new Date(Date.now() + (1000 * 60 * 60 * 24)) }
+        res.cookie("access_token", userAccessToken, option)
+
+        res.status(200).redirect("/")
     } catch (error) {
         console.log(error)
         res.status(500).json(error)
