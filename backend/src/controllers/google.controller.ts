@@ -99,7 +99,7 @@ const googleCallback = async (req: Request, res: Response) => {
     const option = { httpOnly: true, secure: process.env.NODE_ENV === "develpoment", expires: new Date(Date.now() + (1000 * 60 * 60 * 24)) }
     res.cookie("access_token", userAccessToken, option)
 
-    res.status(200).redirect("/")
+    res.status(200).redirect(`/login?success=${user_details.id}`)
   } catch (error) {
     console.log(error)
     res.status(500).json(error)

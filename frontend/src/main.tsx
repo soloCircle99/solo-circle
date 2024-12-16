@@ -6,11 +6,11 @@ import App from './App.tsx'
 import { AuthProvider } from './context/auth.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  <AuthProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
       <StrictMode>
         <App />
       </StrictMode>,
-    </BrowserRouter>
-  </AuthProvider>
+    </AuthProvider>
+  </BrowserRouter>
 )

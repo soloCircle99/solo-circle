@@ -34,7 +34,7 @@ function App() {
             path={route.path}
           />
         ))}
-        <Route element={<Navigate to="/" />} path="*" />
+        <Route element={<Navigate to="/login" />} path="*" />
       </Routes>
     </>
   )

@@ -4,7 +4,7 @@ import Home from "../components/Deskboard/Home";
 
 export const AUTH_ROUTES = [
   {
-    path: "/",
+    path: "/login",
     component: Login,
   },
 ];
