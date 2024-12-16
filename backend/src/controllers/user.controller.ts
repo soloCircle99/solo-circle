@@ -1,14 +1,26 @@
 import { Request, Response } from "express";
 import { UserInterFace } from "../utils/generateAccessToken";
 
-interface AuthRequest extends Request {
-  user?: UserInterFace;
-}
+const mapUserData = (user: UserInterFace) => ({
+  id: user.id,
+  nickName: user.nickName,
+  fullName: user.fullName,
+  email: user.email,
+  avatar: user.avatar,
+  gender: user.gender,
+  birthday: user.birthday,
+  phoneNumber: user.phoneNumber,
+  verified: user.verified,
+  role: user.role,
+  provider: user.provider,
+});
 
-export const getUserData = async (req: AuthRequest, res: Response) => {
+
+export const getUserData = async (req: Request, res: Response) => {
   try {
-    res.json({ message: "User data fetched successfully", userData: req.user });
-  } catch (error) {
-    res.status(401).json({ message: "Error in fetch user controller" });
+    const user = mapUserData(req.user!);
+    res.json({ message: "User data fetched successfully", user });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
 };

@@ -3,17 +3,17 @@ import jwt from "jsonwebtoken";
 import { prisma } from "../prisma-client.js";
 import { UserInterFace } from "../utils/generateAccessToken.js";
 
-interface AuthRequest extends Request {
-  user?: UserInterFace;
+export interface AuthRequest extends Request {
+  user: UserInterFace;
 }
 
 export const authentication = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const token = req.cookies?.auth_token || req.header("Authorization")?.replace("Bearer ", "");
+    const token = req.cookies?.access_token || req.header("Authorization")?.replace("Bearer ", "");
     if (!token) {
       res.status(401).json({ message: "Unauthorized request!" });
       return;
