@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom"
 import { AUTH_ROUTES, ROUTES } from "./constants/routes"
 import { RootElement } from "./helpers/RootElemet"
+import { useAuthState } from "./context/auth"
 
 function App() {
-  const login = true
+  const { isLoggedIn } = useAuthState()
 
-  if (login) {
+  if (isLoggedIn) {
     return (
       <>
         <Routes>
