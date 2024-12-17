@@ -3,14 +3,10 @@ import {
   ReactNode,
   useContext,
   useReducer,
-  Dispatch,
-  useEffect,
-  useState,
+  Dispatch
 } from "react";
 import { getValueFromLocalStorage } from "../helpers/storage";
 import authReducer, { AuthState, AuthAction } from "../reducers/auth";
-import userApi from "../api/user";
-import { useLocation } from "react-router-dom";
 
 const AuthStateContext = createContext<AuthState | undefined>(undefined);
 const AuthDispatchContext = createContext<Dispatch<AuthAction> | undefined>(undefined);
@@ -26,27 +22,6 @@ const initialState: AuthState = {
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
-  const [params, setParmas] = useState<string | null>(null)
-  const location = useLocation();
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const myQueryParam = queryParams.get("success") || null;
-    setParmas(myQueryParam)
-  }, [location.search])
-
-  useEffect(() => {
-    if (params || uid) {
-      (async () => {
-        try {
-          const userData = await userApi.get()
-          dispatch({ type: "LOGIN", payload: { authEmail: userData.data.user.email, authUid: userData.data.user.id } })
-        } catch (error) {
-          console.error(error)
-        }
-      })()
-    }
-  }, [params, uid])
 
   return (
     <AuthStateContext.Provider value={state}>

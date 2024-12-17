@@ -14,6 +14,9 @@ export const authentication = async (
 ) => {
   try {
     const token = req.cookies?.access_token || req.header("Authorization")?.replace("Bearer ", "");
+    const email = req.header("X-Auth-Email")
+    const uid = req.header("X-Auth-Uid")
+
     if (!token) {
       res.status(401).json({ message: "Unauthorized request!" });
       return;
@@ -23,6 +26,11 @@ export const authentication = async (
 
     if (!decodedToken) {
       res.status(401).json({ message: "Token expired" });
+      return;
+    }
+
+    if (decodedToken._id !== uid || decodedToken.email !== email) {
+      res.status(401).json({ message: "Unauthorized request!" });
       return;
     }
 

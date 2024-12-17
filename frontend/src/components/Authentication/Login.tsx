@@ -1,8 +1,24 @@
+import { useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
+import { useAuthDispatch } from "../../context/auth";
 
 const Login: React.FC = () => {
+  const location = useLocation();
+  const authDispatch = useAuthDispatch()
+
+  const queryParams = new URLSearchParams(location.search);
+  const email = queryParams.get("email") || null;
+  const uid = queryParams.get("uid") || null;
+
+  useEffect(() => {
+    if (email && uid) {
+      authDispatch({ type: "LOGIN", payload: { authUid: uid, authEmail: email } })
+    }
+  }, [email, uid])
+
   return (
     <div className="flex items-center justify-center h-screen w-full">
       <div className="border rounded-lg border-primary">
