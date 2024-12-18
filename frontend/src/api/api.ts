@@ -4,7 +4,8 @@ import { clearCredentialsFromLocalStorage, getValueFromLocalStorage } from "../h
 const setupInterceptors = (axiosInstance: AxiosInstance) => {
   axiosInstance.interceptors.response.use(
     (response: AxiosResponse) => {
-      return response;
+      const { data } = response
+      return data;
     },
     (error: any) => {
       if (error.response?.status === 401) {

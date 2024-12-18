@@ -1,8 +1,9 @@
+import { UserApiResponse } from "../Types/UserApiResponse";
 import axios from "./api"
 
 const path = "/user";
 
-const get = async () => axios.get(`${path}/getUserData`);
+const get = async (): Promise<UserApiResponse> => axios.get(`${path}/getUserData`);
 
 const userApi = { get }
 
