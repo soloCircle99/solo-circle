@@ -42,12 +42,21 @@ Configure the database connection by updating the `DATABASE_URL` in the backend'
 ```env
 PORT=8000
 DATABASE_URL=postgresql://username:password@localhost:5432/database_name
+CRYPTO_ENCRYPTION_KEY=********************
+SUPERUSER_EMAIL=********************
+ACCESS_TOKEN_SECRET=********************
 
-GOOGLE_CLIENT_ID=*************************************
-GOOGLE_CLIENT_SECRET=*********************************
-GOOGLE_REDIRECT_URI=**********************************
+GOOGLE_CLIENT_ID=********************
+GOOGLE_CLIENT_SECRET=********************
+GOOGLE_REDIRECT_URI=********************
 
-CRYPTO_ENCRYPTION_KEY=********************************
+FACEBOOK_APP_ID=********************
+FACEBOOK_APP_SECRET=********************
+FACEBOOK_REDIRECT_URI=********************
+
+X_CLIENT_ID=********************
+X_CLIENT_SECRET=********************
+X_REDIRECT_URI=********************
 ```
 
 Synchronize the database schema with Prisma:
