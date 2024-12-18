@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import userApi from "./api/user"
 import UserContext, { UserInterFace } from "./context/user"
 import Loading from "./components/Loading"
+import { Roles } from "./constants"
 
 function App() {
   const { isLoggedIn } = useAuthState()
@@ -64,7 +65,7 @@ function App() {
           <Route element={<RootElement role={userData.user.role} />} path="/" />
           {ROUTES.map(route => (
             <Route
-              element={<route.component />}
+              element={route.role.includes(userData.user.role as Roles) ? <route.component /> : <Navigate to="/" />}
               key={route.path}
               path={route.path}
             />
