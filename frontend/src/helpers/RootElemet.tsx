@@ -5,10 +5,11 @@ export const RootElement = ({ role }: { role: string }) => {
   let url: string
 
   switch (role) {
-    case role = Roles.USER:
+    case Roles.USER:
       url = "/home"
       break;
-    case role = Roles.ADMIN || Roles.SUPERUSER:
+    case Roles.ADMIN:
+    case Roles.SUPERUSER:
       url = "/admin"
       break;
     default:
